@@ -1,6 +1,6 @@
 #include "draw.h"
 
-void drawImagePoint(struct GLImage *image,int x,int y,GLfloat r,GLfloat g,GLfloat b,GLfloat a,GLfloat d)
+void drawImagePoint( GLImage *image,int x,int y,GLfloat r,GLfloat g,GLfloat b,GLfloat a,GLfloat d)
 {
     if(x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT || d < 0.0f || d > image->depth[y][x])return;
     image->image[y*WINDOW_WIDTH+x].r = r;
@@ -10,7 +10,7 @@ void drawImagePoint(struct GLImage *image,int x,int y,GLfloat r,GLfloat g,GLfloa
     image->depth[y][x] = d;
 }
 
-void clearImage(struct GLImage *image)
+void clearImage( GLImage *image)
 {
     for(int y = 0;y < WINDOW_HEIGHT;++y)
     {
@@ -25,7 +25,7 @@ void clearImage(struct GLImage *image)
     }
 }
 
-int initDraw(void (*onDraw)(const struct GLImage*))
+int initDraw(void (*onDraw)(const  GLImage*))
 {
     glfwInit();
 
@@ -42,7 +42,7 @@ int initDraw(void (*onDraw)(const struct GLImage*))
     glfwMakeContextCurrent(window);
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
 
-    struct GLImage image;
+     GLImage image;
     image.image = (GLPixel*)malloc(WINDOW_HEIGHT * WINDOW_WIDTH * sizeof(GLPixel));
     image.drawPoint = &drawImagePoint;
     image.clear = &clearImage;

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "draw.h"
 
-void draw(const struct GLImage *image)
+void draw(const GLImage *image)
 {
     /**for(int i=0;i<500;i++)
       {
